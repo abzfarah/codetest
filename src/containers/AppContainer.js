@@ -32,12 +32,14 @@ class AppContainer extends Component {
 
         <div className="container__heading">
           <h2>Women's Tops</h2>
-          <select
-            ref="sizeSelector"
-            value={this.state.currentSize}
-            onChange={(e) => { this.selectSize(); }}
-          >
-            {options}</select>
+          <div className="container__heading--select">
+            <select
+              ref="sizeSelector"
+              value={this.state.currentSize}
+              onChange={(e) => { this.selectSize(); }}
+            >
+              {options}</select>
+          </div>
         </div>
 
 

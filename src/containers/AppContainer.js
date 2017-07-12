@@ -10,7 +10,7 @@ class AppContainer extends Component {
     this.state = {
       products: [],
       fields: list,
-      currentSize: "All"
+      currentSize: 'All'
     };
   }
   componentDidMount() {

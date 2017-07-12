@@ -1,30 +1,52 @@
 import React, { PropTypes } from 'react';
-import filterBySize from '../utils';
+import classnames from 'classnames';
+import filterBySize, { CSSClassNames } from '../utils';
+
+const CLASS_ROOT = CSSClassNames.PRODUCTS;
+
 
 const ProductsList = ({ products, filterSize }) => {
-  const predicate = filterBySize(filterSize)
-  const filteredContacts = filterSize === 'All' ? products : products.filter(predicate)
+  const predicate = filterBySize(filterSize);
+  const filteredProducts = filterSize === 'All' ? products : products.filter(predicate);
+  const productList = filteredProducts.map((product) => {
+    const { isSale, isExclusive } = product;
+    const saleClass = classnames(
+      CLASS_ROOT,
+      {
+        sale: isSale,
+        exclusive: isExclusive
+      }
+    );
 
+    return (
+      <li className="products__item" key={product.index}>
+        <img src={`./${product.productImage}`} alt="" />
+        {(isSale || isExclusive)
+          && <div className={`${saleClass}`}>{isSale ? 'Sale' : 'Exclusive'}
+
+          </div>
+        }
+        <div className="products__item--wrapper">
+          <span className="products__item--name">Product Name</span>
+          <span className="products__item--price">{product.price}</span>
+        </div>
+      </li>
+    );
+  });
   return (
-    <ul className="products container">
-      {filteredContacts.map(
-        product => (
-          <li className="products__item" key={product.index}>
-            <img src={`./${product.productImage}`} alt="" />
-          </li>
-        )
-      )}
+    <ul className="products">
+      {productList}
     </ul>
   );
 };
 
 ProductsList.defaultProps = {
-  products: PropTypes.Object,
+  products: PropTypes.object,
   filterSize: 'All'
 };
 
 ProductsList.propTypes = {
-  products: PropTypes.Object,
+  products: PropTypes.any,
   filterSize: PropTypes.string
 };
 

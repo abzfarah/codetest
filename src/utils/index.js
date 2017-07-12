@@ -1,5 +1,8 @@
-export default function filterBySize(filterSize) {
-  return function (element) {
-    return element.size.indexOf(filterSize) !== -1;
-  };
-}
+export default filterSize => product => product.size.indexOf(filterSize) !== -1;
+
+export const CSSClassNames = {
+  CONTAINER: 'container',
+  PRODUCTS: 'products',
+  PANEL: 'panel'
+};
+

@@ -1,21 +1,9 @@
-import React from 'react';
-
-
-function filterBySize(filterSize) {
-  return function (element) {
-
-    debugger
-    return element.size.indexOf(filterSize) != -1;
-  };
-}
-
+import React, { PropTypes } from 'react';
+import filterBySize from '../utils';
 
 const ProductsList = ({ products, filterSize }) => {
-
-  const test = filterBySize(filterSize)
-
-  const filteredContacts = filterSize === 'All' ? products : products.filter(test)
-
+  const predicate = filterBySize(filterSize)
+  const filteredContacts = filterSize === 'All' ? products : products.filter(predicate)
 
   return (
     <ul className="products container">
@@ -30,12 +18,14 @@ const ProductsList = ({ products, filterSize }) => {
   );
 };
 
+ProductsList.defaultProps = {
+  products: PropTypes.Object,
+  filterSize: 'All'
+};
+
+ProductsList.propTypes = {
+  products: PropTypes.Object,
+  filterSize: PropTypes.string
+};
+
 export default ProductsList;
-
-
-/*
-
- const filteredContacts = (products, filterSize) => {
- return products.filter(product => product.size.indexOf(filterSize) !== -1);
- }
- */

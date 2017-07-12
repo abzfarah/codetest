@@ -1,0 +1,14 @@
+{
+  "globals": { "fetch": false },
+  "extends": "eslint-config-airbnb",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "comma-dangle": ["error", {"functions": "ignore"}],
+    "react/no-string-refs": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]
+  }
+}

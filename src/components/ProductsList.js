@@ -1,9 +1,22 @@
 import React from 'react';
 
-const ProductsList = ({ products }) => {
-  // const filteredContacts = products.filter(product => product.size.indexOf(filterSize) !== -1);
-  //
-  const filteredContacts = products
+
+function filterBySize(filterSize) {
+  return function (element) {
+
+    debugger
+    return element.size.indexOf(filterSize) != -1;
+  };
+}
+
+
+const ProductsList = ({ products, filterSize }) => {
+
+  const test = filterBySize(filterSize)
+
+  const filteredContacts = filterSize === 'All' ? products : products.filter(test)
+
+
   return (
     <ul className="products container">
       {filteredContacts.map(
@@ -18,3 +31,11 @@ const ProductsList = ({ products }) => {
 };
 
 export default ProductsList;
+
+
+/*
+
+ const filteredContacts = (products, filterSize) => {
+ return products.filter(product => product.size.indexOf(filterSize) !== -1);
+ }
+ */

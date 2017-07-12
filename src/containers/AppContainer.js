@@ -10,7 +10,7 @@ class AppContainer extends Component {
     this.state = {
       products: [],
       fields: list,
-      currentSize: 0
+      currentSize: "All"
     };
   }
   componentDidMount() {
@@ -19,13 +19,14 @@ class AppContainer extends Component {
       .then(products => this.setState({ products }));
   }
 
-  selectSize() {
+  selectSize(currentSize) {
+    this.setState({ currentSize })
     console.log(this.refs.sizeSelector.value);
   }
   render() {
-    const { fields } = this.state;
+    const { fields, products, currentSize } = this.state;
     const options = fields.map(size =>
-      <option key={`option_${size.id}`} value={size.id}>{size.label}</option>
+      <option key={`option_${size.id}`} value={size.value}>{size.label}</option>
     );
     return (
       <main className="container">
@@ -36,14 +37,14 @@ class AppContainer extends Component {
             <select
               ref="sizeSelector"
               value={this.state.currentSize}
-              onChange={(e) => { this.selectSize(); }}
+              onChange={(e) => { this.selectSize(e.target.value); }}
             >
               {options}</select>
           </div>
         </div>
 
 
-        <ProductsList products={this.state.products} />
+        <ProductsList products={products} filterSize={currentSize} />
       </main>
     );
   }

@@ -21,7 +21,6 @@ class AppContainer extends Component {
 
   selectSize(currentSize) {
     this.setState({ currentSize })
-    console.log(this.refs.sizeSelector.value);
   }
   render() {
     const { fields, products, currentSize } = this.state;

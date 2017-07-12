@@ -1,5 +1,10 @@
 {
-  "globals": { "fetch": false },
+  "globals": {
+    "fetch": false,
+    "window": false,
+    "document": false,
+    "__DEV__": false
+  },
   "extends": "eslint-config-airbnb",
   "plugins": [
     "react"
@@ -7,8 +12,10 @@
   "rules": {
     "comma-dangle": ["error", {"functions": "ignore"}],
     "react/no-string-refs": 0,
+    "react/no-unescaped-entities": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "jsx-a11y/href-no-hash": "off",
-    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]
+    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": false, "peerDependencies": false}]
   }
 }

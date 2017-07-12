@@ -28,18 +28,24 @@ class AppContainer extends Component {
       <option key={`option_${size.id}`} value={size.id}>{size.label}</option>
     );
     return (
-      <section className="container">
-        <select
-          ref="sizeSelector"
-          value={this.state.currentSize}
-          onChange={(e) => { this.selectSize(); }}
-        >
-          {options}</select>
+      <main className="container">
+
+        <div className="container__heading">
+          <h2>Women's Tops</h2>
+          <select
+            ref="sizeSelector"
+            value={this.state.currentSize}
+            onChange={(e) => { this.selectSize(); }}
+          >
+            {options}</select>
+        </div>
+
+
         <ProductsList products={this.state.products} />
-      </section>
+      </main>
     );
   }
 }
 
-export default AppContainer
+export default AppContainer;
 

@@ -5,12 +5,13 @@ const ProductsList = ({ products }) => {
   //
   const filteredContacts = products
   return (
-    <ul>
+    <ul className="products container">
       {filteredContacts.map(
         product => (
-          <li key={product.index}>
+          <li className="products__item" key={product.index}>
             <img src={`./${product.productImage}`} alt="" />
-          </li>)
+          </li>
+        )
       )}
     </ul>
   );
